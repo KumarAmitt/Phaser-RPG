@@ -1,0 +1,20 @@
+{
+  "name": "phaser-rpg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KumarAmitt/Phaser-RPG.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KumarAmitt/Phaser-RPG/issues"
+  },
+  "homepage": "https://github.com/KumarAmitt/Phaser-RPG#readme"
+}

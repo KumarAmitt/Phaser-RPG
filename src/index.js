@@ -1,11 +1,11 @@
 import Phaser from 'phaser';
-import config from './Config/config.js';
-import GameScene from './Scenes/GameScene.js';
-import BootScene from './Scenes/BootScene.js';
-import PreloaderScene from './Scenes/PreloaderScene.js';
-import TitleScene from './Scenes/TitleScene.js';
-import OptionsScene from './Scenes/OptionsScene.js';
-import CreditsScene from './Scenes/CreditsScene.js';
+import config from './js/Config/config.js';
+import GameScene from './js/Scenes/GameScene.js';
+import BootScene from './js/Scenes/BootScene.js';
+import PreloaderScene from './js/Scenes/PreloaderScene.js';
+import TitleScene from './js/Scenes/TitleScene.js';
+import OptionsScene from './js/Scenes/OptionsScene.js';
+import CreditsScene from './js/Scenes/CreditsScene.js';
 import Model from './Model.js';
 
 class Game extends Phaser.Game {

@@ -6,7 +6,7 @@ import PreloaderScene from './js/Scenes/PreloaderScene.js';
 import TitleScene from './js/Scenes/TitleScene.js';
 import OptionsScene from './js/Scenes/OptionsScene.js';
 import CreditsScene from './js/Scenes/CreditsScene.js';
-import Model from './Model.js';
+import Model from './js/Model.js';
 
 class Game extends Phaser.Game {
   constructor() {

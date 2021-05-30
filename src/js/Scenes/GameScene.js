@@ -32,7 +32,12 @@ export default class GameScene extends Phaser.Scene {
     this.cameras.main.startFollow(this.player);
     this.cameras.main.roundPixels = true;
 
-    // animation with keys
+    this.anims.create({
+      key: 'left',
+      frames: this.anims.generateFrameNumbers('player', { frames: [19, 20, 19, 21]}),
+      frameRate: 10,
+      repeat: -1
+    });
     this.anims.create({
       key: 'right',
       frames: this.anims.generateFrameNumbers('player', { frames: [31, 30, 31, 32] }),

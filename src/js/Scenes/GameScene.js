@@ -32,10 +32,28 @@ export default class GameScene extends Phaser.Scene {
     this.cameras.main.startFollow(this.player);
     this.cameras.main.roundPixels = true;
 
+    // animation with keys
+    this.anims.create({
+      key: 'right',
+      frames: this.anims.generateFrameNumbers('player', { frames: [31, 30, 31, 32] }),
+      frameRate: 10,
+      repeat: -1
+    });
+    this.anims.create({
+      key: 'up',
+      frames: this.anims.generateFrameNumbers('player', { frames: [43, 42, 43, 44]}),
+      frameRate: 10,
+      repeat: -1
+    });
+    this.anims.create({
+      key: 'down',
+      frames: this.anims.generateFrameNumbers('player', { frames: [ 7, 6, 7, 8 ] }),
+      frameRate: 10,
+      repeat: -1
+    });
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.physics.add.collider(this.player, obstacles);
-
   }
 
   update(time, delta) {
@@ -67,5 +85,4 @@ export default class GameScene extends Phaser.Scene {
       this.player.anims.stop();
     }
   }
-
 }

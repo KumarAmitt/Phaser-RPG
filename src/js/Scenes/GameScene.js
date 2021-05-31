@@ -9,6 +9,11 @@ export default class GameScene extends Phaser.Scene {
     super('Game');
   }
 
+  init(){
+    this.score = 0
+    this.life = 3
+  }
+
   preload() {
     this.load.image('tiles', tilesImg2);
     this.load.tilemapTiledJSON('map', tilesJson2);
@@ -70,7 +75,7 @@ export default class GameScene extends Phaser.Scene {
       loop: true
     });
 
-    this.physics.add.overlap(this.player, this.frog, this.onMeetEnemy, false, this);
+    this.physics.add.overlap(this.player, this.frog, this.onMeetFrog, false, this);
 
     //-------------------------------------
     this.enemy = this.physics.add.group();
@@ -83,6 +88,16 @@ export default class GameScene extends Phaser.Scene {
     });
 
     this.physics.add.overlap(this.player, this.enemy, this.onMeetEnemy, false, this);
+
+    //----------------------------------
+
+    this.scoreText = this.add.text(8, 8, 'Score: 0', { fontSize: '16px', fill: '#fff', backgroundColor:'#000' })
+    this.scoreText.scrollFactorX = 0
+    this.scoreText.scrollFactorY = 0
+
+    this.lifeText = this.add.text(720, 8, 'Life: 3', { fontSize: '16px', fill: '#fff', backgroundColor:'#000' })
+    this.lifeText.scrollFactorX = 0
+    this.lifeText.scrollFactorY = 0
 
   }
 
@@ -117,7 +132,7 @@ export default class GameScene extends Phaser.Scene {
     }
   }
 
-  onMeetEnemy(player, zone) {
+  onMeetFrog(player, zone) {
     // we move the zone to some other location
     zone.x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
     zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
@@ -126,6 +141,20 @@ export default class GameScene extends Phaser.Scene {
     this.cameras.main.shake(300);
 
     // start battle
+    this.score += 10;
+    this.scoreText.setText(`Score: ${this.score}`)
+  }
+  onMeetEnemy(player, zone) {
+    // we move the zone to some other location
+    zone.x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
+    zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
+
+    // shake the world
+    this.cameras.main.shake(200);
+
+    // start battle
+    this.life -= 1;
+    this.lifeText.setText(`Life: ${this.life}`)
   }
 
   frogGen(){

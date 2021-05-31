@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 
 import tilesImg2 from '../../assets/map/basictiles.png';
 import tilesJson2 from '../../assets/map/world.json';
-import playerImg from '../../assets/characters.png';
+import characterImg from '../../assets/characters.png';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -12,7 +12,7 @@ export default class GameScene extends Phaser.Scene {
   preload() {
     this.load.image('tiles', tilesImg2);
     this.load.tilemapTiledJSON('map', tilesJson2);
-    this.load.spritesheet('player', playerImg, { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('player', characterImg, { frameWidth: 16, frameHeight: 16 });
   }
 
   create() {
@@ -59,6 +59,19 @@ export default class GameScene extends Phaser.Scene {
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.physics.add.collider(this.player, obstacles);
+
+    //--------------------------
+    this.frog = this.physics.add.group();
+
+    for(let i = 0; i < 60; i++) {
+      const x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
+      const y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
+
+      this.frog.create(x, y, 'player', 48);
+      this.frog.setVelocityX(20)
+    }
+    this.physics.add.overlap(this.player, this.frog, this.onMeetEnemy, false, this);
+
   }
 
   update(time, delta) {
@@ -90,4 +103,16 @@ export default class GameScene extends Phaser.Scene {
       this.player.anims.stop();
     }
   }
+
+  onMeetEnemy(player, zone) {
+    // we move the zone to some other location
+    zone.x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
+    zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
+
+    // shake the world
+    this.cameras.main.shake(300);
+
+    // start battle
+  }
+
 }

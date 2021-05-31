@@ -63,16 +63,29 @@ export default class GameScene extends Phaser.Scene {
     //--------------------------
     this.frog = this.physics.add.group();
 
-    for(let i = 0; i < 60; i++) {
-      const x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
-      const y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
+    const frogGenLoop = this.time.addEvent({
+      delay: 2000,
+      callback: this.frogGen,
+      callbackScope: this,
+      loop: true
+    });
 
-      this.frog.create(x, y, 'player', 48);
-      this.frog.setVelocityX(20)
-    }
     this.physics.add.overlap(this.player, this.frog, this.onMeetEnemy, false, this);
 
+    //-------------------------------------
+    this.enemy = this.physics.add.group();
+
+    const enemyGenLoop = this.time.addEvent({
+      delay: 3000,
+      callback: this.enemyGen,
+      callbackScope: this,
+      loop: true
+    });
+
+    this.physics.add.overlap(this.player, this.enemy, this.onMeetEnemy, false, this);
+
   }
+
 
   update(time, delta) {
     this.player.body.setVelocity(0);
@@ -113,6 +126,28 @@ export default class GameScene extends Phaser.Scene {
     this.cameras.main.shake(300);
 
     // start battle
+  }
+
+  frogGen(){
+    for(let i = 0; i < 5; i++) {
+      const x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
+      const y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
+      const v = Phaser.Math.RND.between(10, 20)
+
+      this.frog.create(x, y, 'player', 48);
+      this.frog.setVelocityX(v)
+    }
+  }
+
+  enemyGen(){
+    for(let i = 0; i < 10; i++) {
+      const x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
+      const y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
+      const v = Phaser.Math.RND.between(20, 40)
+
+      this.enemy.create(x, y, 'player', 58);
+      this.enemy.setVelocityX(-v)
+    }
   }
 
 }

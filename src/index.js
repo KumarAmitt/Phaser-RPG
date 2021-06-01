@@ -7,7 +7,7 @@ import TitleScene from './js/Scenes/TitleScene.js';
 import OptionsScene from './js/Scenes/OptionsScene.js';
 import CreditsScene from './js/Scenes/CreditsScene.js';
 import Model from './js/Model.js';
-import axios from "axios";
+import LeaderboardScene from "./js/Scenes/LeaderboardScene";
 
 class Game extends Phaser.Game {
   constructor() {
@@ -20,6 +20,7 @@ class Game extends Phaser.Game {
     this.scene.add('Options', OptionsScene);
     this.scene.add('Credits', CreditsScene);
     this.scene.add('Game', GameScene);
+    this.scene.add('Leaderboard', LeaderboardScene)
     this.scene.start('Boot');
   }
 }

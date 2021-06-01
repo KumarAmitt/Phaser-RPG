@@ -12,11 +12,11 @@ const getScores = async () => {
     });
     const { result } = await res.json();
     const sortedResult = sorter(result);
-    console.log(sortedResult.slice(0, 9));
+
     return sortedResult.slice(0, 9);
   } catch (error) {
     throw new Error(error);
   }
 };
 
-export default
+export default getScores;

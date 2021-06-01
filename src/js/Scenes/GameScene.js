@@ -156,6 +156,10 @@ export default class GameScene extends Phaser.Scene {
     // start battle
     this.life -= 1;
     this.lifeText.setText(`Life: ${this.life}`)
+
+    if(this.life === 2) {
+      this.scene.start('Leaderboard');
+    }
   }
 
   frogGen(){

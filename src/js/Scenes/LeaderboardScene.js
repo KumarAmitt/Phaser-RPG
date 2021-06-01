@@ -33,6 +33,10 @@ export default class LeaderboardScene extends Phaser.Scene {
       yCord += 32;
     });
 
+    this.model = this.sys.game.globals.model;
+    if(this.model.musicOn)
+      this.model.musicOn = !this.model.musicOn;
+
     this.menuButton = new Button(this, 400, 500, 'blueButton1', 'blueButton2', 'Menu', 'Title');
 
 

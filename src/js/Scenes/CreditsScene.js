@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import config from '../Config/config.js';
+import Button from "../Objects/Button";
 
 export default class CreditsScene extends Phaser.Scene {
   constructor() {
@@ -46,5 +47,12 @@ export default class CreditsScene extends Phaser.Scene {
         this.scene.start('Title');
       }.bind(this),
     });
+
+    this.menuButton = new Button(this, 400, 500, 'blueButton1', 'blueButton2', 'Menu', 'Title');
+
+    this.model = this.sys.game.globals.model;
+    if(this.model.musicOn)
+      this.model.musicOn = !this.model.musicOn;
+
   }
 }

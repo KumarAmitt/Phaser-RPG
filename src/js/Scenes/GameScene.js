@@ -139,7 +139,7 @@ export default class GameScene extends Phaser.Scene {
     zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
 
     // shake the world
-    this.cameras.main.shake(300);
+    this.cameras.main.shake(100);
 
     // start battle
     this.sys.game.globals.score += 10;

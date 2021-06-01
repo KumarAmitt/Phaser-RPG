@@ -13,7 +13,7 @@ class Game extends Phaser.Game {
   constructor() {
     super(config);
     const model = new Model();
-    this.globals = { model, bgMusic: null, name, score: 0};
+    this.globals = { model, bgMusic: null, name: 'Alien', score: 0};
     this.scene.add('Boot', BootScene);
     this.scene.add('Preloader', PreloaderScene);
     this.scene.add('Title', TitleScene);
@@ -26,3 +26,5 @@ class Game extends Phaser.Game {
 }
 
 window.game = new Game();
+
+document.getElementById('content').style.textAlign = 'center'

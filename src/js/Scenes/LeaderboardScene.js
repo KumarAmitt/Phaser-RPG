@@ -26,10 +26,14 @@ export default class LeaderboardScene extends Phaser.Scene {
 
     let yCord = 100;
 
-    Object.entries(scores).forEach(score => {
+    Object.entries(scores).forEach(s => {
+      const name = s[1]['user'];
+      const score = s[1]['score']
+      const space = 30 - name.length
       this.add.text(config.width / 2, yCord,
-          `${score[1]['user']}     ${score[1]['score']}`,
+          `${name}${'.'.repeat(space)}${score}`,
           {color: "#fff"}).setOrigin(0.5);
+
       yCord += 32;
     });
 

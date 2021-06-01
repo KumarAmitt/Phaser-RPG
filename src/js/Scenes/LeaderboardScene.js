@@ -8,10 +8,6 @@ export default class LeaderboardScene extends Phaser.Scene {
     super('Leaderboard');
   }
 
-  preload() {
-
-  }
-
   async create() {
     this.heading = this.add.text(config.width / 2, 32, "Score Board", {
       color: "#FFFFFF",
@@ -24,7 +20,11 @@ export default class LeaderboardScene extends Phaser.Scene {
     //-------------------------------a
     let scores = await getScores()
 
-    let yCord = 100;
+    let yCord = 132;
+
+    this.add.text(config.width / 2, 100,
+        `${this.sys.game.globals.name}${'.'.repeat(30-this.sys.game.globals.name.length)}${this.sys.game.globals.score}`,
+        {color: "#ffff00"}).setOrigin(0.5);
 
     Object.entries(scores).forEach(s => {
       const name = s[1]['user'];

@@ -12,7 +12,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   init(){
-    this.score = 0
+    // this.score = 0
     this.life = 3
   }
 
@@ -142,8 +142,8 @@ export default class GameScene extends Phaser.Scene {
     this.cameras.main.shake(300);
 
     // start battle
-    this.score += 10;
-    this.scoreText.setText(`Score: ${this.score}`)
+    this.sys.game.globals.score += 10;
+    this.scoreText.setText(`Score: ${this.sys.game.globals.score}`)
   }
   onMeetEnemy(player, zone) {
     // we move the zone to some other location
@@ -158,8 +158,8 @@ export default class GameScene extends Phaser.Scene {
     this.lifeText.setText(`Life: ${this.life}`)
 
     if(this.life === 2) {
-      this.scene.start('Leaderboard');
       updateScore({user: this.sys.game.globals.name, score: this.score})
+      this.scene.start('Leaderboard');
     }
   }
 

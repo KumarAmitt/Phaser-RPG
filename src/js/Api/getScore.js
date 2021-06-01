@@ -13,8 +13,7 @@ const getScores = async () => {
     const { result } = await res.json();
     const sortedResult = sorter(result);
 
-    return sortedResult
-    // return sortedResult.slice(0, 10);
+    return sortedResult.slice(0, 10);
   } catch (error) {
     throw new Error(error);
   }

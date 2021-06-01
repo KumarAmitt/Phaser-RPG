@@ -12,8 +12,8 @@ export default class GameScene extends Phaser.Scene {
   }
 
   init(){
-    // this.score = 0
     this.life = 3
+    this.sys.game.globals.score = 0;
   }
 
   preload() {
@@ -145,7 +145,7 @@ export default class GameScene extends Phaser.Scene {
     this.sys.game.globals.score += 10;
     this.scoreText.setText(`Score: ${this.sys.game.globals.score}`)
   }
-  onMeetEnemy(player, zone) {
+  async onMeetEnemy(player, zone) {
     // we move the zone to some other location
     zone.x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
     zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
@@ -158,8 +158,8 @@ export default class GameScene extends Phaser.Scene {
     this.lifeText.setText(`Life: ${this.life}`)
 
     if(this.life === 2) {
-      updateScore({user: this.sys.game.globals.name, score: this.score})
       this.scene.start('Leaderboard');
+      await updateScore({user: this.sys.game.globals.name, score: this.sys.game.globals.score})
     }
   }
 

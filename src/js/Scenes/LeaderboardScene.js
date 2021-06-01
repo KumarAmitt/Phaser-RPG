@@ -26,6 +26,8 @@ export default class LeaderboardScene extends Phaser.Scene {
         `${this.sys.game.globals.name}${'.'.repeat(30-this.sys.game.globals.name.length)}${this.sys.game.globals.score}`,
         {color: "#ffff00"}).setOrigin(0.5);
 
+    console.log(scores)
+
     Object.entries(scores).forEach(s => {
       const name = s[1]['user'];
       const score = s[1]['score']

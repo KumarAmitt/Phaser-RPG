@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
 import config from '../Config/config.js';
 import Button from '../Objects/Button.js';
-import axios from "axios";
 
 export default class TitleScene extends Phaser.Scene {
   constructor() {
@@ -51,9 +50,9 @@ export default class TitleScene extends Phaser.Scene {
     this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
     this.returnKey.on("down", event => {
       const input = document.querySelector('input');
-      let name = input.value;
-      if(name !== '') {
-        this.message.setText(`Welcome ${name}`);
+      this.sys.game.globals.name = input.value;
+      if(this.sys.game.globals.name !== '') {
+        this.message.setText(`Welcome ${this.sys.game.globals.name}`);
         this.instruction.setText(`Welcome to Wonderland. Press Play to start the game`);
         input.value = '';
       }

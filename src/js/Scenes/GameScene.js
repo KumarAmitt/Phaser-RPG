@@ -4,6 +4,7 @@ import axios from 'axios'
 import tilesImg from '../../assets/map/basictiles.png';
 import tilesJson from '../../assets/map/world.json';
 import characterImg from '../../assets/characters.png';
+import updateScore from "../Api/updateScore";
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -102,7 +103,6 @@ export default class GameScene extends Phaser.Scene {
 
   }
 
-
   update(time, delta) {
     this.player.body.setVelocity(0);
 
@@ -158,6 +158,7 @@ export default class GameScene extends Phaser.Scene {
     this.lifeText.setText(`Life: ${this.life}`)
 
     if(this.life === 2) {
+      updateScore({user: this.sys.game.globals.name, score: this.score})
       this.scene.start('Leaderboard');
     }
   }

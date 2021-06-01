@@ -1,7 +1,8 @@
 import Phaser from 'phaser';
+import axios from 'axios'
 
-import tilesImg2 from '../../assets/map/basictiles.png';
-import tilesJson2 from '../../assets/map/world.json';
+import tilesImg from '../../assets/map/basictiles.png';
+import tilesJson from '../../assets/map/world.json';
 import characterImg from '../../assets/characters.png';
 
 export default class GameScene extends Phaser.Scene {
@@ -15,8 +16,8 @@ export default class GameScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('tiles', tilesImg2);
-    this.load.tilemapTiledJSON('map', tilesJson2);
+    this.load.image('tiles', tilesImg);
+    this.load.tilemapTiledJSON('map', tilesJson);
     this.load.spritesheet('player', characterImg, { frameWidth: 16, frameHeight: 16 });
   }
 

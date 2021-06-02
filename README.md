@@ -20,6 +20,10 @@ YOu can play it directly from the browser of your choice.
 
 [View Live]()
 
+## view Game Design Document
+
+[Game Design Document](./GameDesignDocument.md);
+
 ## Built With 🛠
 
 ```

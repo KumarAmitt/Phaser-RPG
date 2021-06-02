@@ -37,7 +37,6 @@ export default class TitleScene extends Phaser.Scene {
     }).setOrigin(0.5);
 
     let xCord = ((window.innerWidth - config.width) / 2) + (config.width / 2) - 8;
-    console.log(window.innerWidth)
     this.playerName = this.add.dom(xCord, 112, 'input','background-color: #fff; color: #1FA7E1; width: 200px; height: 32px; font: 16px Arial');
 
     document.querySelector('input').placeholder = 'Enter your name'

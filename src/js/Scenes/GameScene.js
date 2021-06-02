@@ -39,30 +39,10 @@ export default class GameScene extends Phaser.Scene {
     this.cameras.main.startFollow(this.player);
     this.cameras.main.roundPixels = true;
 
-    this.anims.create({
-      key: 'left',
-      frames: this.anims.generateFrameNumbers('player', { frames: [19, 20, 19, 21]}),
-      frameRate: 10,
-      repeat: -1
-    });
-    this.anims.create({
-      key: 'right',
-      frames: this.anims.generateFrameNumbers('player', { frames: [31, 30, 31, 32] }),
-      frameRate: 10,
-      repeat: -1
-    });
-    this.anims.create({
-      key: 'up',
-      frames: this.anims.generateFrameNumbers('player', { frames: [43, 42, 43, 44]}),
-      frameRate: 10,
-      repeat: -1
-    });
-    this.anims.create({
-      key: 'down',
-      frames: this.anims.generateFrameNumbers('player', { frames: [ 7, 6, 7, 8 ] }),
-      frameRate: 10,
-      repeat: -1
-    });
+    this.createAnimation({key: 'left', object: 'player', frames: [19, 20, 19, 21]})
+    this.createAnimation({key: 'right', object: 'player', frames: [31, 30, 31, 32]})
+    this.createAnimation({key: 'up', object: 'player', frames: [43, 42, 43, 44]})
+    this.createAnimation({key: 'down', object: 'player', frames: [7, 6, 7, 8]})
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.physics.add.collider(this.player, obstacles);
@@ -131,6 +111,15 @@ export default class GameScene extends Phaser.Scene {
     } else {
       this.player.anims.stop();
     }
+  }
+
+  createAnimation({key, object, frames}){
+    this.anims.create({
+      key: key,
+      frames: this.anims.generateFrameNumbers(object, { frames: frames}),
+      frameRate: 10,
+      repeat: -1
+    });
   }
 
   onMeetFrog(player, zone) {

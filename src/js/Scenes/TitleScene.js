@@ -49,7 +49,7 @@ export default class TitleScene extends Phaser.Scene {
     }).setOrigin(0.5);
 
     this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-    this.returnKey.on('down', (event) => {
+    this.returnKey.on('down', () => {
       const input = document.querySelector('input');
       this.sys.game.globals.name = input.value;
       if (this.sys.game.globals.name !== '') {

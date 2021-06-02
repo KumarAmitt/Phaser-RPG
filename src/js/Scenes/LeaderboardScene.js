@@ -15,10 +15,6 @@ export default class LeaderboardScene extends Phaser.Scene {
       fontStyle: "bold"
     }).setOrigin(0.5);
 
-    let scores = await getScores()
-    console.log(scores)
-
-
     this.add.text(config.width / 2, 100,
         `   ${this.sys.game.globals.name}${'.'.repeat(30-this.sys.game.globals.name.length)}${this.sys.game.globals.score}`,
         {color: "#ffff00"}).setOrigin(0.5);
@@ -42,7 +38,5 @@ export default class LeaderboardScene extends Phaser.Scene {
 
     new Button(this, 400, 500, 'blueButton1', 'blueButton2', 'Menu', 'Title');
   }
-
-
 
 }

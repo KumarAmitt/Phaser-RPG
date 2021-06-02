@@ -22,7 +22,7 @@ YOu can play it directly from the browser of your choice.
 
 ## view Game Design Document
 
-[Game Design Document](./GameDesignDocument.md);
+[Game Design Document](./GameDesignDocument.md)
 
 ## Built With 🛠
 

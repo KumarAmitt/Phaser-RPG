@@ -1,4 +1,4 @@
-import sorter from '../js/Helper/sorter'
+import sorter from '../js/Helper/sorter.js';
 
 const data = [
   {

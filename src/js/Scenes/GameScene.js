@@ -124,7 +124,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   frogGen() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i += 1) {
       const x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
       const y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
       const v = Phaser.Math.RND.between(10, 20);
@@ -135,7 +135,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   enemyGen() {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i += 1) {
       const x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
       const y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
       const v = Phaser.Math.RND.between(20, 40);

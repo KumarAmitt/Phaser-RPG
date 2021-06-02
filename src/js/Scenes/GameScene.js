@@ -11,7 +11,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   init(){
-    this.life = 3
+    this.life = 1
     this.sys.game.globals.score = 0;
   }
 
@@ -53,7 +53,7 @@ export default class GameScene extends Phaser.Scene {
     this.scoreText = this.add.text(8, 8, 'Score: 0', { fontSize: '16px', fill: '#fff', backgroundColor:'#000' })
     this.setScrollFactor(this.scoreText)
 
-    this.lifeText = this.add.text(720, 8, 'Life: 3', { fontSize: '16px', fill: '#fff', backgroundColor:'#000' })
+    this.lifeText = this.add.text(720, 8, `Life: ${this.life}`, { fontSize: '16px', fill: '#fff', backgroundColor:'#000' })
     this.setScrollFactor(this.lifeText)
   }
 
@@ -101,24 +101,22 @@ export default class GameScene extends Phaser.Scene {
     zone.x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
     zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
 
-    this.cameras.main.shake(100);
+    this.cameras.main.shake(50);
 
     this.sys.game.globals.score += 10;
     this.scoreText.setText(`Score: ${this.sys.game.globals.score}`)
   }
+
   async onMeetEnemy(player, zone) {
-    // we move the zone to some other location
     zone.x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
     zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
 
-    // shake the world
-    this.cameras.main.shake(200);
+    this.cameras.main.shake(100);
 
-    // start battle
     this.life -= 1;
     this.lifeText.setText(`Life: ${this.life}`)
 
-    if(this.life === 2) {
+    if(this.life === 0) {
       this.scene.start('Leaderboard');
       await updateScore({user: this.sys.game.globals.name, score: this.sys.game.globals.score})
     }

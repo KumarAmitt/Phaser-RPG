@@ -1,4 +1,4 @@
-import {URL, APIkey} from "./constants";
+import { URL, APIkey } from './constants';
 
 const updateScores = async ({ user, score }) => {
   try {

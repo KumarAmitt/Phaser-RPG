@@ -3,15 +3,15 @@ import Phaser from 'phaser';
 import tilesImg from '../../assets/map/basictiles.png';
 import tilesJson from '../../assets/map/world.json';
 import characterImg from '../../assets/characters.png';
-import updateScore from "../Api/updateScore";
+import updateScore from '../Api/updateScore';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super('Game');
   }
 
-  init(){
-    this.life = 1
+  init() {
+    this.life = 1;
     this.sys.game.globals.score = 0;
   }
 
@@ -42,19 +42,23 @@ export default class GameScene extends Phaser.Scene {
     this.cameras.main.roundPixels = true;
 
     this.cursors = this.input.keyboard.createCursorKeys();
-    this.animatePlayerSprite()
+    this.animatePlayerSprite();
 
-    this.time.addEvent({delay: 2000, callback: this.frogGen, callbackScope: this, loop: true});
-    this.time.addEvent({delay: 3000, callback: this.enemyGen, callbackScope: this, loop: true});
+    this.time.addEvent({
+      delay: 2000, callback: this.frogGen, callbackScope: this, loop: true,
+    });
+    this.time.addEvent({
+      delay: 3000, callback: this.enemyGen, callbackScope: this, loop: true,
+    });
 
     this.physics.add.overlap(this.player, this.frog, this.onMeetFrog, false, this);
     this.physics.add.overlap(this.player, this.enemy, this.onMeetEnemy, false, this);
 
-    this.scoreText = this.add.text(8, 8, 'Score: 0', { fontSize: '16px', fill: '#fff', backgroundColor:'#000' })
-    this.setScrollFactor(this.scoreText)
+    this.scoreText = this.add.text(8, 8, 'Score: 0', { fontSize: '16px', fill: '#fff', backgroundColor: '#000' });
+    this.setScrollFactor(this.scoreText);
 
-    this.lifeText = this.add.text(720, 8, `Life: ${this.life}`, { fontSize: '16px', fill: '#fff', backgroundColor:'#000' })
-    this.setScrollFactor(this.lifeText)
+    this.lifeText = this.add.text(720, 8, `Life: ${this.life}`, { fontSize: '16px', fill: '#fff', backgroundColor: '#000' });
+    this.setScrollFactor(this.lifeText);
   }
 
   update(time, delta) {
@@ -76,25 +80,25 @@ export default class GameScene extends Phaser.Scene {
     }
   }
 
-  animatePlayerSprite(){
-    this.createAnimation({key: 'left', object: 'player', frames: [19, 20, 19, 21]})
-    this.createAnimation({key: 'right', object: 'player', frames: [31, 30, 31, 32]})
-    this.createAnimation({key: 'up', object: 'player', frames: [43, 42, 43, 44]})
-    this.createAnimation({key: 'down', object: 'player', frames: [7, 6, 7, 8]})
+  animatePlayerSprite() {
+    this.createAnimation({ key: 'left', object: 'player', frames: [19, 20, 19, 21] });
+    this.createAnimation({ key: 'right', object: 'player', frames: [31, 30, 31, 32] });
+    this.createAnimation({ key: 'up', object: 'player', frames: [43, 42, 43, 44] });
+    this.createAnimation({ key: 'down', object: 'player', frames: [7, 6, 7, 8] });
   }
 
-  createAnimation({key, object, frames}){
+  createAnimation({ key, object, frames }) {
     this.anims.create({
-      key: key,
-      frames: this.anims.generateFrameNumbers(object, { frames: frames}),
+      key,
+      frames: this.anims.generateFrameNumbers(object, { frames }),
       frameRate: 10,
-      repeat: -1
+      repeat: -1,
     });
   }
 
-  setScrollFactor(el){
-    el.scrollFactorX = 0
-    el.scrollFactorY = 0
+  setScrollFactor(el) {
+    el.scrollFactorX = 0;
+    el.scrollFactorY = 0;
   }
 
   onMeetFrog(player, zone) {
@@ -104,7 +108,7 @@ export default class GameScene extends Phaser.Scene {
     this.cameras.main.shake(50);
 
     this.sys.game.globals.score += 10;
-    this.scoreText.setText(`Score: ${this.sys.game.globals.score}`)
+    this.scoreText.setText(`Score: ${this.sys.game.globals.score}`);
   }
 
   async onMeetEnemy(player, zone) {
@@ -114,34 +118,33 @@ export default class GameScene extends Phaser.Scene {
     this.cameras.main.shake(100);
 
     this.life -= 1;
-    this.lifeText.setText(`Life: ${this.life}`)
+    this.lifeText.setText(`Life: ${this.life}`);
 
-    if(this.life === 0) {
+    if (this.life === 0) {
       this.scene.start('Leaderboard');
-      await updateScore({user: this.sys.game.globals.name, score: this.sys.game.globals.score})
+      await updateScore({ user: this.sys.game.globals.name, score: this.sys.game.globals.score });
     }
   }
 
-  frogGen(){
-    for(let i = 0; i < 5; i++) {
+  frogGen() {
+    for (let i = 0; i < 5; i++) {
       const x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
       const y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
-      const v = Phaser.Math.RND.between(10, 20)
+      const v = Phaser.Math.RND.between(10, 20);
 
       this.frog.create(x, y, 'player', 48);
-      this.frog.setVelocityX(v)
+      this.frog.setVelocityX(v);
     }
   }
 
-  enemyGen(){
-    for(let i = 0; i < 10; i++) {
+  enemyGen() {
+    for (let i = 0; i < 10; i++) {
       const x = Phaser.Math.RND.between(0, this.physics.world.bounds.width);
       const y = Phaser.Math.RND.between(0, this.physics.world.bounds.height);
-      const v = Phaser.Math.RND.between(20, 40)
+      const v = Phaser.Math.RND.between(20, 40);
 
       this.enemy.create(x, y, 'player', 58);
-      this.enemy.setVelocityX(-v)
+      this.enemy.setVelocityX(-v);
     }
   }
-
 }

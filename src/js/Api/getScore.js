@@ -1,5 +1,5 @@
-import {URL, APIkey} from "./constants";
-import { sorter } from '../Helper/sorter'
+import { URL, APIkey } from './constants';
+import { sorter } from '../Helper/sorter';
 
 const getScores = async () => {
   try {

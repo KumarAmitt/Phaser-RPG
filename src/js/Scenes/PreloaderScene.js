@@ -16,7 +16,6 @@ export default class PreloaderScene extends Phaser.Scene {
   }
 
   preload() {
-
     // add logo image
     this.add.image(400, 200, 'logo');
 
@@ -96,7 +95,6 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.audio('bgMusic', [bgMusic]);
 
     //---------------
-
   }
 
   ready() {

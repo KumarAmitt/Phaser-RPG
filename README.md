@@ -18,7 +18,7 @@ YOu can play it directly from the browser of your choice.
 
 ## Live Demo
 
-[View Live]()
+[View Live](https://kumaramitt.github.io/Phaser-RPG/)
 
 ## view Game Design Document
 

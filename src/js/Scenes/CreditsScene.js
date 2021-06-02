@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import config from '../Config/config.js';
-import Button from '../Objects/Button';
+import Button from '../Objects/Button.js';
 
 export default class CreditsScene extends Phaser.Scene {
   constructor() {
@@ -43,7 +43,6 @@ export default class CreditsScene extends Phaser.Scene {
       duration: 8000,
       delay: 1000,
       onComplete: function () {
-        this.madeByTween.destroy;
         this.scene.start('Title');
       }.bind(this),
     });

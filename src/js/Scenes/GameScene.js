@@ -3,7 +3,7 @@ import Phaser from 'phaser';
 import tilesImg from '../../assets/map/basictiles.png';
 import tilesJson from '../../assets/map/world.json';
 import characterImg from '../../assets/characters.png';
-import updateScore from '../Api/updateScore';
+import updateScore from '../Api/updateScore.js';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -24,7 +24,7 @@ export default class GameScene extends Phaser.Scene {
   create() {
     const map = this.make.tilemap({ key: 'map' });
     const tiles = map.addTilesetImage('town', 'tiles');
-    const grass = map.createLayer('Grass', tiles, 0, 0);
+    map.createLayer('Grass', tiles, 0, 0);
     const obstacles = map.createLayer('Obstacles', tiles, 0, 0);
     obstacles.setCollisionByExclusion([-1]);
 
@@ -55,13 +55,15 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.enemy, this.onMeetEnemy, false, this);
 
     this.scoreText = this.add.text(8, 8, 'Score: 0', { fontSize: '16px', fill: '#fff', backgroundColor: '#000' });
-    this.setScrollFactor(this.scoreText);
+    this.scoreText.scrollFactorX = 0;
+    this.scoreText.scrollFactorY = 0;
 
     this.lifeText = this.add.text(720, 8, `Life: ${this.life}`, { fontSize: '16px', fill: '#fff', backgroundColor: '#000' });
-    this.setScrollFactor(this.lifeText);
+    this.lifeText.scrollFactorX = 0;
+    this.lifeText.scrollFactorY = 0;
   }
 
-  update(time, delta) {
+  update() {
     if (this.cursors.left.isDown) {
       this.player.body.setVelocityX(-80);
       this.player.anims.play('left', true);
@@ -94,11 +96,6 @@ export default class GameScene extends Phaser.Scene {
       frameRate: 10,
       repeat: -1,
     });
-  }
-
-  setScrollFactor(el) {
-    el.scrollFactorX = 0;
-    el.scrollFactorY = 0;
   }
 
   onMeetFrog(player, zone) {

@@ -15,7 +15,6 @@ YOu can play it directly from the browser of your choice.
 
 ![screenshot](./src/assets/screenshots/mk1.png)
 
-![screenshot](./src/assets/screenshots/mk2.png)
 
 ## Live Demo
 

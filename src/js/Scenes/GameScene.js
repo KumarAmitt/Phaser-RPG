@@ -11,7 +11,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   init() {
-    this.life = 1;
+    this.life = 3;
     this.sys.game.globals.score = 0;
   }
 

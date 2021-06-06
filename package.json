@@ -1,0 +1,50 @@
+{
+  "name": "phaser-rpg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:ci": "jest --ci",
+    "build": "webpack --config webpack/prod.js ",
+    "start": "webpack serve --config webpack/base.js --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KumarAmitt/Phaser-RPG.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KumarAmitt/Phaser-RPG/issues"
+  },
+  "homepage": "https://github.com/KumarAmitt/Phaser-RPG#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "file-loader": "^6.2.0",
+    "hint": "^6.1.3",
+    "jest": "^27.0.3",
+    "jest-fetch-mock": "^3.0.3",
+    "raw-loader": "^4.0.2",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "^3.19.0",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+    "phaser": "^3.55.0"
+  }
+}
